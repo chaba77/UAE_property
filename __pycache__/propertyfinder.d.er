@@ -1,0 +1,4 @@
+##[pylyzer] failed /home/ether/Desktop/testingThings/realstate/propertyfinder.py 1753128006 702
+.locations: global::List!(global::List!({"Ajman", "1", "Fujairah", "5", "3", "Abu Dhabi", "Dubai", "7", "Umm Al Quwain", "Al Ain", "4", "2", "8", "6", "Sharjah", "Ras Al Khaimah"}, 2), 8)
+.options: global::List!(global::List!({"1", "Rent", "2", "Commercial buy", "Commercial rent", "4", "5", "New Projects", "3", "Buy"}, 2), 5)
+.property_types: global::List!(global::List!({"Compound", "Townhouse", "20", "45", "31", "42", "5", "Apartment", "Half Floor", "1", "35", "Land", "22", "Duplex", "Villa", "Whole Building", "30", "29", "Bulk Sale Unit", "Hotel & Hotel Apartment", "10", "24", "18", "Penthouse", "Full Floor", "Bungalow"}, 2), 13)

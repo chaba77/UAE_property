@@ -1,0 +1,36 @@
+##[pylyzer] failed /home/ether/Desktop/testingThings/realstate/test.py 1753135419 4382
+.json: Never
+
+.requests = pyimport "requests"
+
+.___v_desugar_1: Never
+.sleep: Never
+.fetch_property_data: (page: Obj, locationID: Obj, optionID: Obj) -> Never
+.extract_clean_data: |T :> global::Dict!({{"description"}: Never, {"amenities"}: Never, {"listed_date"}: Never, {"completion_status"}: Never, {"broker"}: global::Dict!({{"phone"}: Never, {"email"}: Never, {"name"}: Never}), {"location"}: Never, {"agent"}: global::Dict!({{"phone"}: {None}, {"email"}: {None}, {"languages"}: Never, {"name"}: Never}), {"furnished"}: Never, {"size_sqft"}: Never, {"title"}: Never, {"price"}: global::Dict!({{"value"}: Never, {"currency"}: Never}), {"share_url"}: Never, {"bedrooms"}: Never, {"image_url"}: Never, {"bathrooms"}: Never}), T: Type|(data: global::Indexable(Obj, global::Indexable(Obj, global::Indexable(Obj, Never) or global::GenericDict or global::List(T, _: Nat)))) -> global::Dict!({{"meta"}: NoneType or T, {"results"}: global::List!(T, 1)})
+
+.first_data: Never
+.meta: NoneType
+.page_count: Never
+.pages_to_fetch: {4}
+.all_results: global::List!(Never, 0)
+.first_page_results: global::Dict!({{"meta"}: NoneType, {"results"}: global::List!(Never, 1)})
+
+
+
+.page_data: Never
+.clean_data: global::Dict!({{"meta"}: NoneType, {"results"}: global::List!(Never, 1)})
+
+
+
+
+.final_output: global::Dict!({{"meta"}: NoneType, {"total_listings"}: Nat, {"results"}: global::List!(Never, _: Nat)})
+
+
+
+
+
+.e: global::Exception
+
+
+
+
