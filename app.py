@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import json
+import re
 import requests
 from urllib.parse import urlparse, parse_qs
 from time import sleep
@@ -45,8 +46,13 @@ property_types = {
 
 # ---------- Scraper Functions ----------
 
-def fetch_property_data(page, params):
-    url = "https://www.propertyfinder.ae/search/_next/data/OJefluvpw_53_FSTVIQCT/en/search.json"
+def get_id_client():
+    return "v_4BXXOdwotCRL9BaU2SV"
+
+
+
+def fetch_property_data(page,id_client, params):
+    url = "https://www.propertyfinder.ae/search/_next/data/"+id_client+"/en/search.json"
     params["page"] = page
 
     headers = {
@@ -163,7 +169,8 @@ def scrape():
         }
 
         # Fetch main page
-        page1_data = fetch_property_data(1, base_params)
+        id_client = get_id_client()
+        page1_data = fetch_property_data(1,id_client, base_params)
         search_data = page1_data["pageProps"]["searchResult"]
         page_props = page1_data["pageProps"]
         meta = search_data.get("meta", {})
@@ -182,7 +189,8 @@ def scrape():
                     params_to_use["l"] = sub_location_id
 
         # Fetch and aggregate up to 4 pages
-        first_data = fetch_property_data(1, params_to_use)
+        id_client = get_id_client()
+        first_data = fetch_property_data(1,id_client, params_to_use)
         meta = first_data["pageProps"]["searchResult"].get("meta", {})
         page_count = meta.get("page_count", 1)
         pages_to_fetch = min(4, page_count)
@@ -192,7 +200,8 @@ def scrape():
         all_results.extend(first_page_results["results"])
 
         for page in range(2, pages_to_fetch + 1):
-            page_data = fetch_property_data(page, params_to_use)
+            id_client = get_id_client()
+            page_data = fetch_property_data(page,id_client, params_to_use)
             clean_data = extract_clean_data(page_data)
             all_results.extend(clean_data["results"])
             sleep(0.3)

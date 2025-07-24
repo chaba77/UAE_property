@@ -1,0 +1,28 @@
+##[pylyzer] failed /home/ether/Desktop/testingThings/realstate/app.py 1753383766 7495
+.___v_desugar_1: Never
+.Flask: Never
+.request: Never
+.jsonify: Never
+.json: Never
+
+.re: Never
+
+.requests: Never
+
+.___v_desugar_2: Never
+.urlparse: Never
+.parse_qs: Never
+.___v_desugar_3: Never
+.sleep: Never
+.app: Never
+.main_locations: global::Dict!({{"Al Ain"}: {"8"}, {"Umm Al Quwain"}: {"2"}, {"Ras Al Khaimah"}: {"3"}, {"Sharjah"}: {"4"}, {"Dubai"}: {"1"}, {"Fujairah"}: {"7"}, {"Abu Dhabi"}: {"6"}, {"Ajman"}: {"5"}})
+.options: global::Dict!({{"New Projects"}: {"5"}, {"Commercial rent"}: {"4"}, {"Commercial buy"}: {"3"}, {"Rent"}: {"2"}, {"Buy"}: {"1"}})
+.property_types: global::Dict!({{"Whole Building"}: {"10"}, {"Apartment"}: {"1"}, {"Full Floor"}: {"18"}, {"Bungalow"}: {"31"}, {"Penthouse"}: {"20"}, {"Compound"}: {"42"}, {"Land"}: {"5"}, {"Duplex"}: {"24"}, {"Bulk Sale Unit"}: {"30"}, {"Villa"}: {"35"}, {"Half Floor"}: {"29"}, {"Hotel & Hotel Apartment"}: {"45"}, {"Townhouse"}: {"22"}})
+.get_id_client: () -> Never
+.fetch_property_data: |V: Type|(page: V, id_client: Str, params: global::Dict!({{"page"}: V})) -> Never
+.extract_clean_data: |T :> global::Dict!({{"description"}: Never, {"amenities"}: Never, {"listed_date"}: Never, {"completion_status"}: Never, {"broker"}: global::Dict!({{"phone"}: Never, {"email"}: Never, {"name"}: Never}), {"location"}: Never, {"agent"}: global::Dict!({{"phone"}: {None}, {"email"}: {None}, {"languages"}: Never, {"name"}: Never}), {"furnished"}: Never, {"size_sqft"}: Never, {"title"}: Never, {"price"}: global::Dict!({{"value"}: Never, {"currency"}: Never}), {"share_url"}: Never, {"bedrooms"}: Never, {"image_url"}: Never, {"bathrooms"}: Never}), T: Type|(data: global::Indexable(Obj, global::Indexable(Obj, global::Indexable(Obj, Never) or global::GenericDict or global::List(T, _: Nat)))) -> global::Dict!({{"meta"}: NoneType or T, {"results"}: global::List!(T, 1)})
+.scrape: () -> Never
+
+
+
+

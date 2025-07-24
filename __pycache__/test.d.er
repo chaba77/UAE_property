@@ -1,10 +1,13 @@
-##[pylyzer] failed /home/ether/Desktop/testingThings/realstate/test.py 1753135419 4382
-.json: Never
+##[pylyzer] failed /home/ether/Desktop/testingThings/realstate/test.py 1753383928 761
+.time: Never
 
-.requests = pyimport "requests"
+.requests: Never
 
-.___v_desugar_1: Never
-.sleep: Never
+.re: Never
+
+.get_id_client: Never
+.id_client: Never
+
 .fetch_property_data: (page: Obj, locationID: Obj, optionID: Obj) -> Never
 .extract_clean_data: |T :> global::Dict!({{"description"}: Never, {"amenities"}: Never, {"listed_date"}: Never, {"completion_status"}: Never, {"broker"}: global::Dict!({{"phone"}: Never, {"email"}: Never, {"name"}: Never}), {"location"}: Never, {"agent"}: global::Dict!({{"phone"}: {None}, {"email"}: {None}, {"languages"}: Never, {"name"}: Never}), {"furnished"}: Never, {"size_sqft"}: Never, {"title"}: Never, {"price"}: global::Dict!({{"value"}: Never, {"currency"}: Never}), {"share_url"}: Never, {"bedrooms"}: Never, {"image_url"}: Never, {"bathrooms"}: Never}), T: Type|(data: global::Indexable(Obj, global::Indexable(Obj, global::Indexable(Obj, Never) or global::GenericDict or global::List(T, _: Nat)))) -> global::Dict!({{"meta"}: NoneType or T, {"results"}: global::List!(T, 1)})
 
