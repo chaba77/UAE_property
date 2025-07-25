@@ -46,8 +46,49 @@ property_types = {
 
 # ---------- Scraper Functions ----------
 
+def get_build_id():
+    url = "https://www.propertyfinder.ae/search/_next/data/v/en/search.json"
+    params = {
+        "l": "1",
+        "c": "2",
+        "t": "20",
+        "btr[]": "4",
+        "pf": "30000",
+        "fu": "0",
+        "rp": "y",
+        "ob": "mr"
+    }
+    headers = {
+        "Host": "www.propertyfinder.ae",
+        "X-Nextjs-Data": "1",
+        "Sec-Ch-Ua-Platform": '"Linux"',
+        "Accept-Language": "en-US,en;q=0.9",
+        "Sec-Ch-Ua": '"Not)A;Brand";v="8", "Chromium";v="138"',
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/138.0.0.0 Safari/537.36",
+        "Sec-Ch-Ua-Mobile": "?0",
+        "Accept": "*/*",
+        "Sec-Fetch-Site": "same-origin",
+        "Sec-Fetch-Mode": "cors",
+        "Sec-Fetch-Dest": "empty",
+        "Referer": "https://www.propertyfinder.ae/en/search?l=1&c=2&fu=0&rp=y&ob=mr",
+        "Accept-Encoding": "gzip, deflate, br",
+        "Priority": "u=1, i"
+    }
+
+    response = requests.get(url, headers=headers, params=params)
+
+    # Regex to extract JSON inside <script id="__NEXT_DATA__">
+    match = re.search(r'<script id="__NEXT_DATA__" type="application/json">(.*?)</script>', response.text, re.S)
+    if match:
+        try:
+            json_data = json.loads(match.group(1))
+            return json_data.get("buildId")
+        except json.JSONDecodeError:
+            return None
+
+    return None
 def get_id_client():
-    return "v_4BXXOdwotCRL9BaU2SV"
+    return get_build_id()
 
 
 
@@ -70,7 +111,6 @@ def fetch_property_data(page,id_client, params):
     }
 
     response = requests.get(url, headers=headers, params=params)
-    response.raise_for_status()
     return response.json()
 
 
@@ -216,6 +256,44 @@ def scrape():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+
+@app.route("/sublocations", methods=["POST"])
+def get_sublocations():
+    try:
+        body = request.get_json()
+        location_name = body.get("main_location")
+
+        # Validate main location
+        if location_name not in main_locations:
+            return jsonify({"error": f"Location '{location_name}' not found"}), 404
+
+        main_locationID = main_locations[location_name]
+
+        base_params = {
+            "l": main_locationID,
+            "c": "1",  # default to "Buy" (or make it configurable)
+            "t": "1",  # default to "Apartment" (or make it configurable)
+            "fu": 0,
+            "ob": "mr"
+        }
+
+        # Get build ID
+        id_client = get_id_client()
+
+        # Fetch page 1 to get aggregationLinks
+        page1_data = fetch_property_data(1, id_client, base_params)
+        page_props = page1_data.get("pageProps", {})
+        aggregation_links = page_props.get("pageMeta", {}).get("aggregationLinks", [])
+
+        # Extract only names
+        sublocation_names = [link["name"] for link in aggregation_links]
+
+        return jsonify({"main_location": location_name, "sublocations": sublocation_names})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 
 if __name__ == "__main__":
